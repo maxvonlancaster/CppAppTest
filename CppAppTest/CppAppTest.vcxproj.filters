@@ -18,5 +18,11 @@
     <ClCompile Include="CppAppTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OopPlayGround.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OopPlayGround.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
