@@ -1,5 +1,6 @@
 #include "OopPlayGround.h"
 #include <iostream>
+#include <SDL2/SDL.h>
 using namespace std;
 
 void classUsage() 

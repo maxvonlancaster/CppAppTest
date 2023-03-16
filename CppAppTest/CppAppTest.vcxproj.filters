@@ -24,5 +24,18 @@
     <ClCompile Include="OopPlayGround.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SdlPlayground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SdlPlayground.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="images\bird.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "OopPlayGround.h"
+#include "SdlPlayground.h"
 using namespace std;
 
 void variables()
@@ -166,7 +167,8 @@ int main()
     //structures();
     //references();
     //pointers();
-    classUsage();
+    //classUsage();
+    initSdl();
 }
 
 
