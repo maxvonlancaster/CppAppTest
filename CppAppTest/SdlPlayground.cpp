@@ -30,6 +30,44 @@ class Seed
 };
 Seed seeds[1] = { NULL };
 
+void renderText() 
+{
+    ////this opens a font style and sets a size
+    //TTF_Font* Sans = TTF_OpenFont("Sans.ttf", 24);
+
+    //// this is the color in rgb format,
+    //// maxing out all would give you the color white,
+    //// and it will be your text's color
+    //SDL_Color White = { 255, 255, 255 };
+
+    //// as TTF_RenderText_Solid could only be used on
+    //// SDL_Surface then you have to create the surface first
+    //SDL_Surface* surfaceMessage =
+    //    TTF_RenderText_Solid(Sans, "put your text here", White);
+
+    //// now you can convert it into a texture
+    //SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+
+    //SDL_Rect Message_rect; //create a rect
+    //Message_rect.x = 0;  //controls the rect's x coordinate 
+    //Message_rect.y = 0; // controls the rect's y coordinte
+    //Message_rect.w = 100; // controls the width of the rect
+    //Message_rect.h = 100; // controls the height of the rect
+
+    //// (0,0) is on the top left of the window/screen,
+    //// think a rect as the text's box,
+    //// that way it would be very simple to understand
+
+    //// Now since it's a texture, you have to put RenderCopy
+    //// in your game loop area, the area where the whole code executes
+
+    //// you put the renderer's name first, the Message,
+    //// the crop size (you can ignore this if you don't want
+    //// to dabble with cropping), and the rect which is the size
+    //// and coordinate of your texture
+    //SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+}
+
 void updateSeeds(int i) 
 {
     int x_new;
@@ -100,14 +138,13 @@ void getImageToScreen()
     checkEaten();
 }
 
-void freeImage() 
+void fillBirdBlackBox() 
 {
-    //Deallocate surface
-    SDL_FreeSurface(screenSurface);
-    SDL_FreeSurface(bird);
-    bird = NULL;
+    SDL_FillRect(
+        screenSurface,
+        &m_image_position,
+        SDL_MapRGB(screenSurface->format, 0, 0, 0));
 }
-
 
 void keyHandling() 
 {
@@ -138,37 +175,25 @@ void keyHandling()
                 switch (e.key.keysym.sym)
                 {
                 case SDLK_UP:
-                    SDL_FillRect(
-                        screenSurface, 
-                        &m_image_position, 
-                        SDL_MapRGB(screenSurface->format, 0, 0, 0));
+                    fillBirdBlackBox();
                     m_image_position.y -= step;
                     getImageToScreen();
                     break;
 
                 case SDLK_DOWN:
-                    SDL_FillRect(
-                        screenSurface, 
-                        &m_image_position, 
-                        SDL_MapRGB(screenSurface->format, 0, 0, 0));
+                    fillBirdBlackBox();
                     m_image_position.y += step;
                     getImageToScreen();
                     break;
 
                 case SDLK_LEFT:
-                    SDL_FillRect(
-                        screenSurface, 
-                        &m_image_position, 
-                        SDL_MapRGB(screenSurface->format, 0, 0, 0));
+                    fillBirdBlackBox();
                     m_image_position.x -= step;
                     getImageToScreen();
                     break;
 
                 case SDLK_RIGHT:
-                    SDL_FillRect(
-                        screenSurface, 
-                        &m_image_position, 
-                        SDL_MapRGB(screenSurface->format, 0, 0, 0));
+                    fillBirdBlackBox();
                     m_image_position.x += step;
                     getImageToScreen();
                     break;
@@ -179,14 +204,16 @@ void keyHandling()
             }
         }
     }
-
-    freeImage();
 }
 
 
 
 void quitFunc() 
 {
+    //Deallocate surface
+    SDL_FreeSurface(screenSurface);
+    SDL_FreeSurface(bird);
+    bird = NULL;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
